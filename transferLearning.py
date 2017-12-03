@@ -45,7 +45,7 @@ def compute_content_cost(a_C, a_G):
     
     return J_content
     
-    tf.reset_default_graph()
+tf.reset_default_graph()
 
 with tf.Session() as test:
     tf.set_random_seed(1)
@@ -54,7 +54,7 @@ with tf.Session() as test:
     J_content = compute_content_cost(a_C, a_G)
     print(J_content.eval())
     
-    def gram_matrix(A):
+def gram_matrix(A):
     """
     Argument:
     A -- matrix of shape (n_C, n_H*n_W)
@@ -69,7 +69,7 @@ with tf.Session() as test:
     
     return GA
     
-    tf.reset_default_graph()
+tf.reset_default_graph()
 
 with tf.Session() as test:
     tf.set_random_seed(1)
@@ -78,7 +78,7 @@ with tf.Session() as test:
     
     print("GA = " + str(GA.eval()))
     
-    def compute_layer_style_cost(a_S, a_G):
+def compute_layer_style_cost(a_S, a_G):
     """
     Arguments:
     a_S -- tensor of dimension (1, n_H, n_W, n_C), hidden layer activations representing style of the image S 
@@ -108,7 +108,7 @@ with tf.Session() as test:
     
     return J_style_layer
     
-    tf.reset_default_graph()
+tf.reset_default_graph()
 
 with tf.Session() as test:
     tf.set_random_seed(1)
@@ -116,16 +116,16 @@ with tf.Session() as test:
     a_G = tf.random_normal([1, 4, 4, 3], mean=1, stddev=4)
     J_style_layer = compute_layer_style_cost(a_S, a_G)
     
-    print("J_style_layer = " + str(J_style_layer.eval()))
+print("J_style_layer = " + str(J_style_layer.eval()))
     
-    STYLE_LAYERS = [
+STYLE_LAYERS = [
     ('conv1_1', 0.2),
     ('conv2_1', 0.2),
     ('conv3_1', 0.2),
     ('conv4_1', 0.2),
     ('conv5_1', 0.2)]
     
-    def compute_style_cost(model, STYLE_LAYERS):
+def compute_style_cost(model, STYLE_LAYERS):
     """
     Computes the overall style cost from several chosen layers
     
@@ -163,7 +163,7 @@ with tf.Session() as test:
 
     return J_style
     
-    def total_cost(J_content, J_style, alpha = 10, beta = 40):
+def total_cost(J_content, J_style, alpha = 10, beta = 40):
     """
     Computes the total cost function
     
@@ -183,7 +183,7 @@ with tf.Session() as test:
     
     return J
     
-    tf.reset_default_graph()
+tf.reset_default_graph()
 
 with tf.Session() as test:
     np.random.seed(3)
@@ -279,4 +279,4 @@ def model_nn(sess, input_image, num_iterations = 500):
     
     return generated_image
     
-    model_nn(sess, generated_image)
+model_nn(sess, generated_image)
